@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /photos/
+Sitemap: https://kazakhstanbycar.kz/sitemap.xml
