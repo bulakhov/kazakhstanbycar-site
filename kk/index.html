@@ -774,7 +774,7 @@ var CARS=[{"id":"pajero","name":"Mitsubishi Pajero Sport","seats":4,"factor":1,"
     return out; }
   function fleetLive(){ var box=$('fleetLive'), layer=document.getElementById('fleetLayer'); if(!box||!CARS.length)return; var L=(T.fleet&&T.fleet.live)||{}; var st=fleetState(); box.hidden=false;
     var FLEET_IMG2={prado:'fleet-prado',pajero:'fleet-pajero',hiace:'fleet-hiace',tank:'fleet-tank',jetour:'fleet-jetour',touareg:'fleet-touareg'};
-    $('fleetLiveRow').innerHTML=st.map(function(x){var c=carById(x.id); var txt=x.free?(L.free||''):(x.leg==='toward'?(L.toward||'')+' '+pointName(x.dest):x.leg==='at'?(L.at||'')+' '+pointName(x.dest):(L.back||'')); return '<div class="live-chip"><img src="img/'+(FLEET_IMG2[x.id]||'hero-scene')+'.jpg" alt="" loading="lazy"><span class="live-dot'+(x.free?'':' road')+'"></span><div><b>'+esc(c.name)+'</b><span>'+esc(txt)+'</span></div></div>'}).join('');
+    $('fleetLiveRow').innerHTML=st.map(function(x){var c=carById(x.id); var txt=x.free?(L.free||''):(x.leg==='toward'?(L.toward||'')+' '+pointName(x.dest):x.leg==='at'?(L.at||'')+' '+pointName(x.dest):(L.back||'')); return '<div class="live-chip"><img src="img/'+(FLEET_IMG2[x.id]||'hero-scene')+'.jpg" alt="" loading="lazy"><span class="live-dot'+(x.free?'':' onroad')+'"></span><div><b>'+esc(c.name)+'</b><span>'+esc(txt)+'</span></div></div>'}).join('');
     if(!layer)return; var P={}; PTS.forEach(function(p){P[p.id]=px(p)}); var A=P.almaty; if(!A)return; var used={};
     layer.innerHTML=st.map(function(x,i){ var D=x.free?A:(P[x.dest]||A); var fx=x.free?0:x.f; var cx=A.x+(D.x-A.x)*fx, cy=A.y+(D.y-A.y)*fx; var k=Math.round(cx/30)+':'+Math.round(cy/30); var n=(used[k]=(used[k]||0)+1); cx+=(n-1)*18; cy+=(n-1)*14; var name=carById(x.id).name.replace(/^(Toyota|Mitsubishi|Volkswagen) /,'');
       return '<g class="car'+(x.free?' free':'')+'" transform="translate('+cx.toFixed(1)+' '+cy.toFixed(1)+')"><circle class="ring" r="9"/><path class="body" d="M-9 2h18v-4l-3-5h-12l-3 5z"/><circle cx="-5" cy="3" r="2" fill="#1b1f1d"/><circle cx="5" cy="3" r="2" fill="#1b1f1d"/><text x="12" y="-6">'+esc(name)+'</text></g>'; }).join('');
@@ -796,7 +796,7 @@ var CARS=[{"id":"pajero","name":"Mitsubishi Pajero Sport","seats":4,"factor":1,"
   var LANGS=["ru","en","kk","ko","hi","fr","es","de"]; /* languages built for this site */
   var LANG_URLS={"ru":"https://kazakhstanbycar.kz/","en":"https://kazakhstanbycar.com/","kk":"https://kazakhstanbycar.kz/kk/","ko":"https://kazakhstanbycar.com/ko/","hi":"https://kazakhstanbycar.com/hi/","fr":"https://kazakhstanbycar.com/fr/","es":"https://kazakhstanbycar.com/es/","de":"https://kazakhstanbycar.com/de/"}; /* absolute page urls per language (two-domain setup) */
   var WINTER=["pajero","prado","tank","hiace","jetour","touareg"]; /* car ids that have a winter hero scene */
-  var SEASONS={"spring":[],"autumn":[],"winter":["pajero","prado","tank","hiace","jetour","touareg"]}; /* season -> car ids that have that scene (summer is the base photo) */
+  var SEASONS={"spring":[],"autumn":["pajero","prado"],"winter":["pajero","prado","tank","hiace","jetour","touareg"]}; /* season -> car ids that have that scene (summer is the base photo) */
   var $=function(id){return document.getElementById(id)};
   var esc=function(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
   var fmt=function(n){return '$'+Math.round(n).toLocaleString('en-US')};
