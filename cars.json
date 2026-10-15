@@ -1,1 +1,47 @@
-{"updated":"2026-10-14T10:10:27.114Z","cars":[{"id":"pajero","name":"Mitsubishi Pajero Sport","seats":4,"factor":1,"ownCalendar":true},{"id":"prado","name":"Toyota Land Cruiser Prado","seats":4,"factor":1,"ownCalendar":false},{"id":"tank","name":"Tank 300","seats":4,"factor":1.1,"ownCalendar":false},{"id":"jetour","name":"Jetour X70 Plus","seats":6,"factor":1,"ownCalendar":false},{"id":"touareg","name":"Volkswagen Touareg","seats":4,"factor":1,"ownCalendar":false},{"id":"hiace","name":"Toyota Hiace","seats":9,"factor":1.5,"ownCalendar":false}]}
+{
+  "updated": "2026-10-14T10:10:27.114Z",
+  "cars": [
+    {
+      "id": "pajero",
+      "name": "Mitsubishi Pajero Sport",
+      "seats": 4,
+      "factor": 1,
+      "ownCalendar": true
+    },
+    {
+      "id": "prado",
+      "name": "Toyota Land Cruiser Prado 150",
+      "seats": 4,
+      "factor": 1,
+      "ownCalendar": false
+    },
+    {
+      "id": "tank",
+      "name": "Tank 300",
+      "seats": 4,
+      "factor": 1.1,
+      "ownCalendar": false
+    },
+    {
+      "id": "jetour",
+      "name": "Jetour X70",
+      "seats": 6,
+      "factor": 1,
+      "ownCalendar": false
+    },
+    {
+      "id": "touareg",
+      "name": "Volkswagen Touareg",
+      "seats": 4,
+      "factor": 1,
+      "ownCalendar": false
+    },
+    {
+      "id": "hiace",
+      "name": "Toyota Hiace",
+      "seats": 9,
+      "factor": 1.5,
+      "ownCalendar": false
+    }
+  ]
+}
