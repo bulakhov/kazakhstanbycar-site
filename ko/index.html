@@ -848,7 +848,11 @@ var CARS=[{"id":"pajero","name":"Mitsubishi Pajero Sport","seats":4,"factor":1,"
   function renderDrivers(){ var sec=$('drivers'); if(!sec)return; var list=DRIVERS.filter(function(d){return d.public!==false}); sec.hidden=!list.length; if(!list.length)return; var D=T.drivers||{};
     $('driverCards').innerHTML=list.map(function(d){return '<div class="driver'+(state_driver===d.id?' on':'')+'" data-id="'+esc(d.id)+'">'+(d.photo?'<img src="'+esc(d.photo)+'" alt="" loading="lazy">':'')+'<div class="b"><h3>'+esc(d.name)+'</h3><small>'+esc(D.city||'')+': '+esc(d.city||'')+' · '+esc(d.car||'')+'</small><small>'+esc(D.langs||'')+': '+esc(d.langs||'')+'</small><button type="button" class="btn btn-ghost">'+esc(state_driver===d.id?'✓ '+(D.choose||''):(D.choose||''))+'</button></div></div>'}).join('');
     $('driverCards').onclick=function(e){var c=e.target.closest('.driver'); if(!c)return; state_driver=(state_driver===c.getAttribute('data-id'))?'':c.getAttribute('data-id'); renderDrivers(); var a=document.querySelector('#price'); if(state_driver&&a)a.scrollIntoView({behavior:'smooth',block:'start'});}; }
-  fetch('drivers.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){ if(j&&j.drivers&&j.drivers.length){ DRIVERS=j.drivers; renderDrivers(); } }).catch(function(){});
+  /* live data straight from the cabinet API (5-minute server cache), static JSON as the fallback */
+  var LIVE_ALL=null;
+  function liveAll(){ if(!REQUEST_URL||!window.fetch) return Promise.resolve(null); if(LIVE_ALL) return LIVE_ALL; var ctl=('AbortController' in window)?new AbortController():null; if(ctl) setTimeout(function(){ try{ctl.abort()}catch(e){} },7000); LIVE_ALL=fetch(REQUEST_URL+'?data=all',ctl?{signal:ctl.signal}:{}).then(function(r){return r.ok?r.json():null}).then(function(j){ return (j&&j.tours&&j.busy)?j:null; }).catch(function(){return null}); return LIVE_ALL; }
+  function src(name){ return liveAll().then(function(all){ if(all){ var o=name==='busy'?all.busy:name==='tours'?{updated:all.updated,tours:all.tours}:{updated:all.updated,drivers:all.drivers||[]}; return {ok:true,json:function(){return Promise.resolve(o)}}; } return fetch(name+'.json',{cache:'no-store'}); }); }
+  src('drivers').then(function(r){return r.ok?r.json():null}).then(function(j){ if(j&&j.drivers&&j.drivers.length){ DRIVERS=j.drivers; renderDrivers(); } }).catch(function(){});
   /* ---------- anti-abuse: proof-of-work (sha-256 hashcash) + minimum fill time; verified by the backend ---------- */
   var FORM_T0=Date.now();
   function sha256hex(str){ var enc=new TextEncoder().encode(str); return crypto.subtle.digest('SHA-256',enc).then(function(buf){ return Array.prototype.map.call(new Uint8Array(buf),function(b){return ('0'+b.toString(16)).slice(-2)}).join(''); }); }
@@ -1325,8 +1329,8 @@ var CARS=[{"id":"pajero","name":"Mitsubishi Pajero Sport","seats":4,"factor":1,"
     if(live.tours){ var u2=new Date(live.tours.updated); $('priceUpdated').textContent=t('pricelist.sheetUpdated')+' '+u2.toLocaleDateString(LOCALE[LANG],{day:'numeric',month:'short'})+' '+u2.toLocaleTimeString(LOCALE[LANG],{hour:'2-digit',minute:'2-digit'})+'.'; }
   }
   renderAll();
-  fetch('busy.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){ if(!j||!j.busy)throw new Error('x'); live.busy=j; applyLive(); }).catch(function(){ $('calUpdated').textContent=t('calc.notLoaded'); });
-  fetch('tours.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){ if(!j||!j.tours||!j.tours.length)throw new Error('x'); PRICES=j.tours; live.tours=j; buildTours(); buildFromTours(); onTour(); applyLive(); }).catch(function(){ $('priceUpdated').textContent=t('pricelist.builtIn'); });
+  src('busy').then(function(r){return r.ok?r.json():null}).then(function(j){ if(!j||!j.busy)throw new Error('x'); live.busy=j; applyLive(); }).catch(function(){ $('calUpdated').textContent=t('calc.notLoaded'); });
+  src('tours').then(function(r){return r.ok?r.json():null}).then(function(j){ if(!j||!j.tours||!j.tours.length)throw new Error('x'); PRICES=j.tours; live.tours=j; buildTours(); buildFromTours(); onTour(); applyLive(); }).catch(function(){ $('priceUpdated').textContent=t('pricelist.builtIn'); });
 })();
 </script>
 
