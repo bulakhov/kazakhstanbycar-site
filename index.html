@@ -1277,14 +1277,14 @@ var CARS=[{"id":"pajero","name":"Mitsubishi Pajero Sport","seats":4,"factor":1,"
       if(j&&j.ok){ msg.textContent=R.ok; msg.className='msg ok'; for(var n=0;n<tr.days;n++){var dd=new Date(state.date);dd.setDate(dd.getDate()+n);busySet()[key(dd)]=1;} renderCal(); btn.textContent=R.requested; }
       else if(j&&j.error==='busy'){ msg.textContent=R.busy; msg.className='msg bad'; busySet()[key(state.date)]=1; state.date=null; renderCal(); update(); btn.disabled=false; }
       else throw new Error('x');
-    }).catch(function(){ msg.textContent=R.fail; msg.className='msg bad'; btn.disabled=false; });
+    }).catch(function(){ msg.textContent=R.fail; waFallback(); msg.className='msg bad'; btn.disabled=false; });
   });
   contactForm.addEventListener('submit',function(e){
     e.preventDefault(); var C=T.cta,out=$('cMsgOut'),btn=$('cBtn'); out.className='msg';
     var name=$('cName').value.trim(),contact=$('cContact').value.trim(),text=$('cMsg').value.trim();
     if(btn.disabled)return; if(name.length<2||contact.length<3||text.length<3){out.textContent=C.formNeed;out.className='msg bad';return;}
     btn.disabled=true; out.textContent=T.calc.req.sending;
-    post({kind:'contact',name:name,contact:contact,message:text,lang:LANG,website:$('cWebsite').value}).then(function(j){ if(j&&j.ok){out.textContent=C.formOk;out.className='msg ok';btn.textContent=T.calc.req.requested;} else throw new Error('x'); }).catch(function(){out.textContent=C.formFail;out.className='msg bad';btn.disabled=false;});
+    post({kind:'contact',name:name,contact:contact,message:text,lang:LANG,website:$('cWebsite').value}).then(function(j){ if(j&&j.ok){out.textContent=C.formOk;out.className='msg ok';btn.textContent=T.calc.req.requested;} else throw new Error('x'); }).catch(function(){out.textContent=C.formFail; try{ window.open(WA+encodeURIComponent(name+': '+text),'_blank','noopener'); }catch(x){}out.className='msg bad';btn.disabled=false;});
   });
 
   /* header, language */
@@ -1297,7 +1297,7 @@ var CARS=[{"id":"pajero","name":"Mitsubishi Pajero Sport","seats":4,"factor":1,"
     if(!REQUEST_URL){ window.open(WA+encodeURIComponent(text),'_blank','noopener'); m.textContent=J.ok; m.className='msg ok'; return; }
     if(b.disabled)return; b.disabled=true; m.textContent='…'; m.className='msg';
     var readPhoto=ph?new Promise(function(res){var fr=new FileReader(); fr.onload=function(){res(fr.result)}; fr.onerror=function(){res('')}; fr.readAsDataURL(ph);}):Promise.resolve('');
-    readPhoto.then(function(photo){ return post({kind:'join',name:v('jName'),city:v('jCity'),phone:v('jPhone'),car:v('jCar'),langs:v('jLangs'),exp:v('jExp'),photo:photo,lang:LANG,website:$('jWebsite').value,ref:(typeof REF==='string'?REF:'')}); }).then(function(r){return r.json()}).then(function(j){ b.disabled=false; if(j&&j.ok){ m.textContent=J.ok; m.className='msg ok'; f.reset(); } else { m.textContent=J.fail; m.className='msg bad'; } }).catch(function(){ b.disabled=false; m.textContent=J.fail; m.className='msg bad'; }); }); })();
+    readPhoto.then(function(photo){ return post({kind:'join',name:v('jName'),city:v('jCity'),phone:v('jPhone'),car:v('jCar'),langs:v('jLangs'),exp:v('jExp'),photo:photo,lang:LANG,website:$('jWebsite').value,ref:(typeof REF==='string'?REF:'')}); }).then(function(r){return r.json()}).then(function(j){ b.disabled=false; if(j&&j.ok){ m.textContent=J.ok; m.className='msg ok'; f.reset(); } else { m.textContent=J.fail; m.className='msg bad'; try{ window.open(WA+encodeURIComponent(text),'_blank','noopener'); }catch(x){} } }).catch(function(){ b.disabled=false; m.textContent=J.fail; m.className='msg bad'; try{ window.open(WA+encodeURIComponent(text),'_blank','noopener'); }catch(x){} }); }); })();
   /* ---------- weather on the routes (Open-Meteo, no key, cached 30 min) ---------- */
   var WX_PLACES=[['almaty',43.238,76.889],['charyn',43.353,79.077],['kolsai',42.956,78.325],['assy',43.218,77.87],['altyn',43.94,78.57],['bao',43.053,76.985],['issyk',43.254,77.478],['tamgaly',44.077,76.991]];
   function wxKind(c){ c=+c; if(c===0)return 'clear'; if(c<=2)return 'partly'; if(c===3)return 'cloudy'; if(c<=48)return 'fog'; if(c<=67||(c>=80&&c<=82))return 'rain'; if(c<=77||c===85||c===86)return 'snow'; return 'storm'; }
