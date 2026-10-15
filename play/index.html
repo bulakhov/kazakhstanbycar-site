@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Kazakhstan or not? — A 60-second travel challenge</title>
+  <meta name="description" content="Five real photographs. One question: Kazakhstan or not? Play the daily travel challenge and challenge a friend. No signup.">
+  <link rel="canonical" href="https://kazakhstanbycar.com/play/">
+  <meta property="og:title" content="Kazakhstan or not? Can you get 5 out of 5?">
+  <meta property="og:description" content="Five real photographs. A one-minute travel challenge. Play, discover, challenge a friend.">
+  <meta property="og:type" content="website"><meta property="og:url" content="https://kazakhstanbycar.com/play/">
+  <meta property="og:image" content="https://kazakhstanbycar.com/play/assets/social.png">
+  <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#122e29">
+  <link rel="stylesheet" href="style.css?v=1">
+  <script type="module" src="app.mjs?v=1"></script>
+</head>
+<body>
+  <header class="top"><a class="brand" href="/" aria-label="Kazakhstan by Car home"><svg width="35" height="31" viewBox="0 0 35 31" aria-hidden="true"><path d="M1 23 11 5l7 12 5-8 11 14" fill="currentColor"/><path d="m3 29 28-3" stroke="#e8a169" stroke-width="2" stroke-dasharray="5 4"/></svg><span>KAZAKHSTAN<br>BY CAR</span></a><div class="top-right"><a id="back" href="/">Explore trips ↗</a><label class="sr" for="language">Language / Язык</label><select id="language"><option value="en">EN</option><option value="ru">RU</option></select></div></header>
+  <main id="main">
+    <section id="intro" class="intro">
+      <div class="intro-copy"><p class="eyebrow" data-i="eyebrow">THE DAILY DETOUR · 01</p><h1><span data-i="title">KAZAKHSTAN</span><br><em data-i="orNot">OR NOT?</em></h1><p class="lead" data-i="intro">Some places look a world away. Others are closer than you think.</p><p class="muted" data-i="rules">Five real photos. Trust your eyes. About a minute, no signup, no timer.</p><button id="start" class="primary" data-i="start">Take the challenge ↗</button><div class="intro-meta"><span data-i="five">05 PHOTOS</span><span data-i="signup">ZERO SIGNUPS</span><span>EN / RU</span></div><p id="invite" class="notice" hidden></p></div>
+      <figure class="intro-photo"><img src="assets/p01.jpg" width="1280" height="853" alt="Red rock towers beneath a blue sky" fetchpriority="high"><figcaption><span data-i="photoTag">REAL PLACES. UNEXPECTED ANSWERS.</span><span>↗</span></figcaption></figure>
+    </section>
+    <section id="game" hidden aria-labelledby="question">
+      <div class="game-top"><p class="eyebrow" id="dayLabel"></p><div id="progress" class="dots" aria-label="Progress"></div><span id="counter"></span></div>
+      <div class="game-grid"><figure class="round-photo"><img id="photo" width="1280" height="960" alt=""><div id="imageLoading" class="image-status" role="status"></div><button id="retry" class="secondary" hidden data-i="retry">Retry photo</button></figure>
+      <div class="question-panel"><p class="eyebrow" data-i="look">LOOK CLOSER</p><h2 id="question" tabindex="-1" data-i="question">Is this Kazakhstan?</h2><p id="answerHint" class="muted" data-i="hint">Mountains, lakes, a little misdirection. Go with your instinct.</p><div class="choices"><button id="yes" class="primary" disabled data-i="yes">Yes, Kazakhstan</button><button id="no" class="secondary" disabled data-i="no">Somewhere else</button></div>
+      <div id="reveal" hidden><p id="verdict" class="verdict" role="status"></p><h3 id="place"></h3><p id="fact"></p><p class="photo-credit"><a id="source" target="_blank" rel="noopener"></a> · <a id="license" target="_blank" rel="noopener"></a><br><span data-i="changes">Resized / cropped for display. No AI-generated scenery.</span></p><a id="visit" class="text-link" hidden data-i="visit">I want to go here ↗</a><button id="next" class="primary" data-i="next">Next photo →</button></div>
+      </div></div>
+    </section>
+    <section id="result" class="result" hidden aria-labelledby="resultTitle">
+      <div class="result-card"><p class="eyebrow" data-i="passport">YOUR EXPLORER CARD</p><h2 id="resultTitle" tabindex="-1"></h2><div id="score" class="score"></div><div id="resultDots" class="dots"></div><p id="resultDay"></p><div class="mountains" aria-hidden="true">△ △ △</div><p class="card-brand">KAZAKHSTAN BY CAR</p></div>
+      <div class="result-actions"><p class="eyebrow" data-i="turn">YOUR FRIEND'S TURN</p><h3 data-i="challenge">Think they can beat you?</h3><p class="muted" data-i="same">Send the same five photos. No answers in the link.</p><button id="share" class="primary" data-i="share">Challenge a friend ↗</button><div class="pair"><button id="copy" class="secondary" data-i="copy">Copy result & link</button><button id="download" class="secondary" data-i="download">Save image ↓</button></div><a id="shareWa" class="text-link" target="_blank" rel="noopener">WhatsApp ↗</a><p id="shareStatus" role="status" aria-live="polite"></p><div class="trip-box"><p data-i="travel">Liked the Kazakhstan landscapes? Let's turn a photo into a real trip.</p><a id="trip" class="primary" href="/?utm_source=game&utm_medium=interactive&utm_campaign=kazakhstan_or_not#tours" data-i="trip">Explore private trips ↗</a><small data-i="confirm">Route, price and availability confirmed in chat.</small></div><div class="pair"><button id="again" class="quiet" data-i="again">Review these photos</button><a id="today" class="quiet" href="./" data-i="today">Today's challenge</a></div></div>
+    </section>
+    <figure id="imageOutput" hidden><img id="resultImage" width="1080" height="1350" alt=""><figcaption><a id="saveImage" download="kazakhstan-challenge.png">Download PNG ↓</a></figcaption></figure>
+    <p id="fatal" role="alert" hidden></p>
+    <noscript><p class="notice">This game needs JavaScript. Для игры нужен JavaScript. <a href="/">Explore trips / Перейти к поездкам</a></p></noscript>
+  </main>
+  <footer><p data-i="daily">A new combination every day · Almaty time · A small, growing photo collection.</p><details><summary data-i="credits">Photo credits & privacy</summary><p data-i="privacy">Your progress stays in this browser. No account, tracking cookies or leaderboard. Sharing opens only when you choose it. Scores are for fun, not a competition with prizes.</p><p data-i="licenses">Photographs are from Wikimedia Commons. Authors, originals and licenses are listed below. Resized and cropped only; image licenses remain unchanged. Sharing cards contain our graphics, not these photographs.</p><ul id="credits"></ul></details><a href="/" class="footer-brand">KAZAKHSTAN BY CAR ↗</a></footer>
+</body></html>

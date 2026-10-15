@@ -1,0 +1,79 @@
+[
+  {
+    "id": "p01",
+    "title": "Charyn Canyon 13.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Charyn_Canyon_13.jpg",
+    "author": "Adam Harangozó",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized Wikimedia thumbnail; displayed cropped to fit. Original photograph, no AI seasonal edits.",
+    "width": 1280,
+    "height": 853
+  },
+  {
+    "id": "p02",
+    "title": "Kaindy.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Kaindy.jpg",
+    "author": "Gafur adm",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized Wikimedia thumbnail; displayed cropped to fit. Original photograph, no AI seasonal edits.",
+    "width": 1280,
+    "height": 960
+  },
+  {
+    "id": "p03",
+    "title": "Big Almaty Lake (Bolshaya Almatinka) in June.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Big_Almaty_Lake_(Bolshaya_Almatinka)_in_June.jpg",
+    "author": "Ds02006",
+    "license": "Public domain",
+    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "changes": "Resized Wikimedia thumbnail; displayed cropped to fit. Original photograph, no AI seasonal edits.",
+    "width": 1280,
+    "height": 960
+  },
+  {
+    "id": "p04",
+    "title": "Altyn Emel 2020 4.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Altyn_Emel_2020_4.jpg",
+    "author": "Sane4o",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized Wikimedia thumbnail; displayed cropped to fit. Original photograph, no AI seasonal edits.",
+    "width": 1280,
+    "height": 960
+  },
+  {
+    "id": "p05",
+    "title": "Lake bled.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Lake_bled.jpg",
+    "author": "Fighting Irish 1977 from Kuala Lumpur",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "changes": "Resized Wikimedia thumbnail; displayed cropped to fit. Original photograph, no AI seasonal edits.",
+    "width": 1280,
+    "height": 803
+  },
+  {
+    "id": "p06",
+    "title": "Moraine Lake 17092005.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Moraine_Lake_17092005.jpg",
+    "author": "Gorgo",
+    "license": "Public domain",
+    "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+    "changes": "Resized Wikimedia thumbnail; displayed cropped to fit. Original photograph, no AI seasonal edits.",
+    "width": 1280,
+    "height": 960
+  },
+  {
+    "id": "p07",
+    "title": "Horseshoe-Bend.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Horseshoe-Bend.jpg",
+    "author": "Erdwinger",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "changes": "Resized Wikimedia thumbnail; displayed cropped to fit. Original photograph, no AI seasonal edits.",
+    "width": 1280,
+    "height": 576
+  }
+]
