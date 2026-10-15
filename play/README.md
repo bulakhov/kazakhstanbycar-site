@@ -16,7 +16,7 @@ Buildless static game, published at `/play/` on both domains. EN/RU; the booking
 `assets/credits.json` records Wikimedia Commons source, author and license for every photo. Original photographs; resized/cropped for the screen, no AI transformations. All photo licenses are retained. The share card and `social.png` use original typographic/mountain graphics only.
 
 ## Checks
-`node tools/test-game.mjs`; `node --check site/play/app.mjs`.
+`node tools/test-game.mjs`; `node --check site/play/app.js`.
 Browser: EN/RU, mobile 390px, five rounds, wrong/right answers, reload/resume, completed-result resume, result PNG preview, copy confirmation, review mode, links/UTM, console errors.
 
 `tools/build.py --site com|kz --out ...` copies `site/play` into the generated folder. Existing root booking pages and API behavior remain independent.

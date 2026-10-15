@@ -1,3 +1,4 @@
+// Standard .js extension is required by the production host's JavaScript MIME mapping.
 // Versioned, deterministic rounds: a shared link always opens the same challenge.
 export const VERSION = '1';
 export function almatyDay(now = new Date()) {
