@@ -1,4 +1,4 @@
-import {VERSION,almatyDay,validDay,roundsFor,restore,scoreFor} from './core.mjs';
+import {VERSION,almatyDay,validDay,roundsFor,restore,scoreFor} from './core.js';
 const $=id=>document.getElementById(id);
 const q=new URLSearchParams(location.search), today=almatyDay();
 const day=validDay(q.get('day'))?q.get('day'):today;
