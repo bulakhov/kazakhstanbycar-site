@@ -39,7 +39,7 @@
     {
       "id": "hiace",
       "name": "Toyota Hiace",
-      "seats": 9,
+      "seats": 11,
       "factor": 1.5,
       "ownCalendar": false
     }
