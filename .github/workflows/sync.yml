@@ -1,0 +1,33 @@
+name: sync site data from the cabinet
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - name: pull tours, cars, availability and drivers from the Apps Script API into both site branches
+        env:
+          API: https://script.google.com/macros/s/AKfycbyx2xTh2XgMOT9SLX1YnBMxplKZfJYED21TPcUFick88_68qLgkqeAtkst3ia2_K6de/exec
+        run: |
+          set -e
+          curl -sL "$API?data=all" -o /tmp/all.json
+          node -e '
+            const fs=require("fs"); const j=JSON.parse(fs.readFileSync("/tmp/all.json","utf8"));
+            if(!j.tours||!j.cars||!j.busy) { console.error("bad payload"); process.exit(1); }
+            fs.writeFileSync("/tmp/tours.json", JSON.stringify({updated:j.updated,tours:j.tours})+"\n");
+            fs.writeFileSync("/tmp/cars.json", JSON.stringify({updated:j.updated,cars:j.cars})+"\n");
+            fs.writeFileSync("/tmp/busy.json", JSON.stringify(j.busy)+"\n");
+            fs.writeFileSync("/tmp/drivers.json", JSON.stringify({updated:j.updated,drivers:j.drivers||[]})+"\n");
+          '
+          git config user.name "kbc-sync"; git config user.email "sync@kazakhstanbycar.kz"
+          for b in kz com; do
+            git checkout -q $b
+            cp /tmp/tours.json /tmp/cars.json /tmp/busy.json /tmp/drivers.json ./
+            if ! git diff --quiet; then git commit -qam "sync: cabinet data $(date -u +%FT%TZ)"; git push -q origin $b; fi
+          done
