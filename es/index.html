@@ -817,6 +817,7 @@ html[data-season="summer"] .hero::after{background:linear-gradient(90deg,rgba(8,
     <div><a class="brand" href="#top"><svg viewBox="0 0 34 34" fill="none" aria-hidden="true"><path d="M2 24 11 9l5 8 4-5 12 12H2z" fill="#fff" opacity=".95"/><path d="M4 30c8-4 14 2 26-3" stroke="#ffb27a" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="4 4"/></svg><span>Kazakhstan by Car<small data-t="brand.tagline"></small></span></a><p data-t="footer.about"></p></div>
     <div id="footCol1"></div><div id="footCol2"></div>
     <p class="credits" data-t="footer.credits"></p>
+    <a id="playLink" class="btn btn-ghost" href="/play/">Kazakhstan or not? · Play ↗</a>
     <a class="hub" href="https://astanahub.com/" target="_blank" rel="noopener"><svg viewBox="0 0 44 44" aria-hidden="true"><path d="M22 3 39 12.5v19L22 41 5 31.5v-19z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M14 30 22 13l8 17M17.3 24.5h9.4" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Astana Hub</b><em data-t="footer.hub"></em></span></a>
   </div>
 </footer>
@@ -937,6 +938,9 @@ var CARS=[{"id":"pajero","name":"Mitsubishi Pajero Sport","seats":4,"factor":1,"
 
   /* ---------- rendering ---------- */
   function renderStatic(){
+    var playLabels={ru:'Казахстан или нет? · Игра ↗',en:'Kazakhstan or not? · Play ↗',kk:'Қазақстан ба, жоқ па? · Ойын (EN / RU) ↗',ko:'카자흐스탄일까요? · 게임 (EN / RU) ↗',hi:'कज़ाख़स्तान या नहीं? · खेलें (EN / RU) ↗',fr:'Kazakhstan ou pas ? · Jouer (EN / RU) ↗',es:'¿Kazajistán o no? · Jugar (EN / RU) ↗',de:'Kasachstan oder nicht? · Spielen (EN / RU) ↗',ar:'كازاخستان أم لا؟ · العب (EN / RU) ↗',zh:'这是哈萨克斯坦吗？· 游戏 (EN / RU) ↗'};
+    $('playLink').textContent=playLabels[LANG]||playLabels.en;
+    $('playLink').href='/play/?lang='+(LANG==='ru'?'ru':'en');
     document.documentElement.lang=LANG==='kk'?'kk':LANG; document.documentElement.dir=LANG==='ar'?'rtl':'ltr';
     document.querySelectorAll('[data-t]').forEach(function(el){ var v=t(el.getAttribute('data-t')); if(typeof v==='string') el.textContent=v; });
     $('slowPhoto').alt=t('slow.alt');
