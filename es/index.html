@@ -1272,6 +1272,7 @@ var CARS=[{"id":"pajero","name":"Mitsubishi Pajero Sport","seats":4,"factor":1,"
     if(btn.disabled)return; if(!state.date){msg.textContent=R.needDate;msg.className='msg bad';return;} if(name.length<2||phone.length<3){msg.textContent=R.needName;msg.className='msg bad';return;}
     var payload={kind:'request',ref:REF,driver:state_driver,source:document.referrer.slice(0,60),date:isoDate(state.date),days:tr.days,tourId:tr.id,tour:tr.name+' ('+tr.len+')',carId:car().id,car:car().name,people:state.n,tier:T.calc.tiers[state.tier],options:state.lastMsg,estimate:$('sumTotal').textContent,name:name,phone:phone,lang:LANG,website:$('reqWebsite').value};
     btn.disabled=true; msg.textContent=R.sending;
+    var waFallback=function(){ try{ window.open(WA+encodeURIComponent(state.lastMsg||''),'_blank','noopener'); }catch(e){} };
     post(payload).then(function(j){
       if(j&&j.ok){ msg.textContent=R.ok; msg.className='msg ok'; for(var n=0;n<tr.days;n++){var dd=new Date(state.date);dd.setDate(dd.getDate()+n);busySet()[key(dd)]=1;} renderCal(); btn.textContent=R.requested; }
       else if(j&&j.error==='busy'){ msg.textContent=R.busy; msg.className='msg bad'; busySet()[key(state.date)]=1; state.date=null; renderCal(); update(); btn.disabled=false; }
