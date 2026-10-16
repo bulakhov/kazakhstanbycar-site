@@ -1,0 +1,20 @@
+{
+  "version": "competitor-2026-10-16",
+  "checked": "2026-10-16",
+  "source": "https://almatrips.kz/private-tours/",
+  "benchmarkCurrency": "KZT",
+  "benchmarkGuests": "1–3",
+  "benchmarkService": "English-speaking driver-guide, park fees; meals and accommodation excluded",
+  "discountPercent": 10,
+  "displayRateKztPerUsd": 500,
+  "rounding": "Round USD base tariffs down to whole dollars; never increase an existing tariff",
+  "scope": "Base tariffs only. Existing car factors, season adjustments, trip discounts and options remain separate.",
+  "routes": {
+    "bao": {"benchmarkKzt":119990,"original":{"taxi":120,"ru":150,"en":170},"prices":{"taxi":120,"ru":150,"en":170}},
+    "issyk": {"benchmarkKzt":149990,"original":{"taxi":200,"ru":240,"en":270},"prices":{"taxi":199,"ru":239,"en":269}},
+    "assy": {"benchmarkKzt":169990,"original":{"taxi":300,"ru":350,"en":390},"prices":{"taxi":234,"ru":273,"en":305}},
+    "kolsai2": {"benchmarkKzt":229990,"original":{"taxi":560,"ru":660,"en":740},"prices":{"taxi":312,"ru":368,"en":413}},
+    "altyn": {"benchmarkKzt":289990,"original":{"taxi":600,"ru":700,"en":780},"prices":{"taxi":400,"ru":467,"en":521}}
+  },
+  "unmatched": ["charyn", "ck1", "tamgaly"]
+}
